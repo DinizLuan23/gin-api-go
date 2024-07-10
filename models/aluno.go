@@ -10,8 +10,8 @@ var validate *validator.Validate
 type Aluno struct {
 	gorm.Model
 	Nome string `json:"nome" validate:"required"`
-	Cpf  string `json:"cpf" validate:"len=11, number"`
-	Rg   string `json:"rg" validate:"len=9, number"`
+	Cpf  string `json:"cpf" validate:"len=11,numeric"`
+	Rg   string `json:"rg" validate:"len=9,numeric"`
 }
 
 func ValidarDadosAluno(aluno *Aluno) error {

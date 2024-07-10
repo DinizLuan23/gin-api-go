@@ -1,0 +1,60 @@
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  httputil.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: status bad request
+        type: string
+    type: object
+  models.Aluno:
+    properties:
+      cpf:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: integer
+      nome:
+        type: string
+      rg:
+        type: string
+      updatedAt:
+        type: string
+    required:
+    - nome
+    type: object
+info:
+  contact: {}
+paths:
+  /alunos:
+    get:
+      consumes:
+      - application/json
+      description: Rota para buscar todos os alunos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Aluno'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Mostrar os alunos
+      tags:
+      - alunos
+swagger: "2.0"
